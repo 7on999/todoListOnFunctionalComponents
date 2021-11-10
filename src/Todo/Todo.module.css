@@ -1,0 +1,18 @@
+.done {
+  /* text-decoration-line: line-through; */
+  opacity: 0.5;
+}
+
+.activeFilter {
+  background-color: cadetblue;
+}
+
+.error {
+  border: 3px solid red;
+  outline: none
+}
+
+.errorMessage {
+  color:crimson;
+  margin:0px;
+}
