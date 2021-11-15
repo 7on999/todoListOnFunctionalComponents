@@ -11,20 +11,9 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Container } from '@mui/material';
-import { Grid } from '@mui/material';
-import { Paper } from '@mui/material';
-import {ChangeFilterAC} from './redux/todolistReducer';
-import todolistsReducer from './redux/todolistReducer';
-import taskReducer from './redux/taskReducer';
-import {deleteTodoAC} from './redux/todolistReducer';
-import {updateNameTodoAC} from './redux/todolistReducer';
-import {AddTodoAC} from './redux/todolistReducer';
-import {removeTaskAC} from './redux/taskReducer';
-import {addTaskAC} from './redux/taskReducer';
-import {changeStatusTaskAC} from './redux/taskReducer';
-import {updatExistTaskAC} from './redux/taskReducer';
-import {addTodoTasksAC} from './redux/taskReducer';
+import { Grid, Paper, Container } from '@mui/material';
+import todolistsReducer, {updateNameTodoAC, deleteTodoAC, AddTodoAC, ChangeFilterAC} from './redux/todolistReducer';
+import taskReducer, {addTodoTasksAC, deleteAllTasksOfChooseTodoAC, updatExistTaskAC, changeStatusTaskAC, addTaskAC, removeTaskAC } from './redux/taskReducer';
 
 
 export type todolistsType = {
@@ -126,16 +115,18 @@ function App() {
 
   const removeTodoList = (todolistID: string) => {
     dispatchTodolists(deleteTodoAC(todolistID))
-    
+    dispatchTasks(deleteAllTasksOfChooseTodoAC(todolistID))
     // setTodolists(todolists.filter(t => t.id !== todolistID))
   }
 
   const addTodo = (title: string) => {
     let newIdTodo = generate();
-    let newIdTask1 = generate();
-    let newIdTask2 = generate();
+    // let newIdTask1 = generate();
+    // let newIdTask2 = generate();
     dispatchTodolists(AddTodoAC(newIdTodo, title))
-    dispatchTasks(addTodoTasksAC(newIdTodo, newIdTask1, newIdTask2, title))
+    dispatchTasks(addTodoTasksAC(newIdTodo, title))
+    // dispatchTasks(addTodoTasksAC(newIdTodo, newIdTask1, newIdTask2, title))
+
     
     // setTodolists([{ id: newId, title: title, filter: 'All' }, ...todolists]);
     // setTasks({
@@ -216,3 +207,6 @@ function App() {
 }
 
 export default App;
+
+
+

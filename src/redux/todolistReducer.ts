@@ -13,7 +13,7 @@ const todolistsReducer = (state:Array<todolistsType>, action:mainActionType):Arr
       return state.map(t => t.id === action.todolistsID ? { ...t, title: action.title } : t)
 
     case 'ADD-TODO':
-      return [{ id: action.id, title: action.title, filter: 'All' }, ...state]
+      return [ ...state, { id: action.id, title: action.title, filter: 'All' }]
          
   }
 }
